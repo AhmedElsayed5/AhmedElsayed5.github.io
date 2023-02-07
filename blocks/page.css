@@ -19,19 +19,11 @@
 @media screen and (max-width: 920px) {
   .page__section {
     max-width: 584px;
-    width: 100%;
-    position: relative;
-    margin: 0 auto;
-    box-sizing: border-box;
   }
 }
 
 @media screen and (max-width: 590px) {
   .page__section {
     max-width: 302px;
-    width: 100%;
-    position: relative;
-    margin: 0 auto;
-    box-sizing: border-box;
   }
 }

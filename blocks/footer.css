@@ -3,11 +3,23 @@
   padding-bottom: 60px;
 }
 .footer__description {
-  font-family: "Inter";
+  font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   color: #545454;
   margin: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding-top: 48px;
+    padding-bottom: 36px;
+    padding-left: 10px;
+  }
+  .footer__description {
+    font-size: 14px;
+    line-height: 16.94px;
+  }
 }
