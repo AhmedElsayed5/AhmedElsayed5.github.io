@@ -19,4 +19,4 @@ This project is made so all the elements are displayed correctly on popular scre
 
 **GitHub-page**
 
-https://ahmedelsayed5.github.io/
+https://ahmedelsayed5.github.io/se_project_aroundtheus/
