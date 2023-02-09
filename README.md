@@ -17,6 +17,6 @@ This project is made so all the elements are displayed correctly on popular scre
 -![320px view](/images/Screenshot-1.jpeg "pic-1") -![721px view](/images/Screenshot-2.jpeg "pic-2")
 --![1120px view](/images/Screenshot-3.jpeg "pic-3")
 
-**GitHub**
+**GitHub-page**
 
-https://github.com/AhmedElsayed5/se_project_aroundtheus
+https://ahmedelsayed5.github.io/
