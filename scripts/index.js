@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -25,37 +25,45 @@ let initialCards = [
   },
 ];
 
-let cardTempelate = document.querySelector("#card").content;
-let cardList = document.querySelector(".cards__list");
+const cardTemplate = document.querySelector("#card").content;
+const cardList = document.querySelector(".cards__list");
 
-for (let i = 0; i < initialCards.length; i++) {
-  let cardElement = cardTempelate.querySelector(".card").cloneNode(true);
-  let cardImage = cardElement.querySelector(".card__image");
-  let cardTitle = cardElement.querySelector(".card__title");
+function createCard(i) {
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
 
   cardImage.src = initialCards[i].link;
   cardImage.alt = initialCards[i].name;
   cardTitle.textContent = initialCards[i].name;
-  cardList.append(cardElement);
+  return cardElement;
 }
 
-let mod = document.querySelector(".modal");
-let editButton = document.querySelector(".profile__edit-button");
-let nameInput = document.querySelector("#name");
-let jobInput = document.querySelector("#job");
-let profileName = document.querySelector(".profile__title");
-let profileJob = document.querySelector(".profile__description");
-let closeModal = document.querySelector(".modal__close-button");
+for (let i = 0; i < initialCards.length; i++) {
+  const newCard = createCard(i);
+  cardList.append(newCard);
+}
 
-function open() {
-  mod.classList.add("modal_opened");
+const profileModal = document.querySelector(".modal");
+const editProfileButton = document.querySelector(".profile__edit-button");
+const nameInput = document.querySelector("#name");
+const jobInput = document.querySelector("#job");
+const profileName = document.querySelector(".profile__title");
+const profileJob = document.querySelector(".profile__description");
+const closeModalButton = document.querySelector(".modal__close-button");
 
+function fillProfileForm() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
+function open() {
+  profileModal.classList.add("modal_opened");
+  fillProfileForm();
+}
+
 function close() {
-  mod.classList.remove("modal_opened");
+  profileModal.classList.remove("modal_opened");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -65,6 +73,6 @@ function handleProfileFormSubmit(evt) {
   close();
 }
 
-editButton.addEventListener("click", open);
-closeModal.addEventListener("click", close);
-mod.addEventListener("submit", handleProfileFormSubmit);
+editProfileButton.addEventListener("click", open);
+closeModalButton.addEventListener("click", close);
+profileModal.addEventListener("submit", handleProfileFormSubmit);
