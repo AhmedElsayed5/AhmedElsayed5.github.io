@@ -28,19 +28,19 @@ const initialCards = [
 const cardTemplate = document.querySelector("#card").content;
 const cardList = document.querySelector(".cards__list");
 
-function createCard(i) {
+function createCard(card) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
 
-  cardImage.src = initialCards[i].link;
-  cardImage.alt = initialCards[i].name;
-  cardTitle.textContent = initialCards[i].name;
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
+  cardTitle.textContent = card.name;
   return cardElement;
 }
 
 for (let i = 0; i < initialCards.length; i++) {
-  const newCard = createCard(i);
+  const newCard = createCard(initialCards[i]);
   cardList.append(newCard);
 }
 
