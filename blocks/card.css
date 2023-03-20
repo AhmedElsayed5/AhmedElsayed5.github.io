@@ -1,3 +1,6 @@
+.card {
+  position: relative;
+}
 .card__image {
   height: 282px;
   width: 282px;
@@ -5,6 +8,7 @@
   border-top-right-radius: 10px;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .card__description {
@@ -42,4 +46,22 @@
 .card__like-button:hover {
   opacity: 50%;
   cursor: pointer;
+}
+.card__like-button_active {
+  background: url(../images/Union.png) no-repeat;
+}
+
+.card__delete-button {
+  position: absolute;
+  height: 19.3px;
+  width: 18px;
+  right: 10px;
+  top: 10px;
+  background: transparent url(../images/Group.png) no-repeat;
+  border: none;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
 }

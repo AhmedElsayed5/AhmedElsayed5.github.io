@@ -1,0 +1,50 @@
+.image-modal {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.75s, opacity 0.75s linear;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.image-modal_active {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.5s;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-modal__screen {
+  max-height: 75vh;
+  max-width: 75vw;
+}
+
+.image-modal__content {
+  position: relative;
+}
+
+.image-modal__title {
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ffffff;
+  align-self: flex-start;
+  margin: 0;
+}
+.image-modal__close-button {
+  position: absolute;
+  background: transparent url(../images/Close-Icon.png) no-repeat;
+  border: none;
+  top: -30px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
