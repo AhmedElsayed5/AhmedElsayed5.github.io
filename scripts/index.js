@@ -47,10 +47,10 @@ function createCard(card) {
 
   cardImage.addEventListener("click", (evt) => {
     const imageModal = document.querySelector("#image-modal");
-    imageModal.classList.add("modal_opened");
+    open(imageModal);
 
-    const imageSrc = imageModal.querySelector(".image-modal__screen");
-    const imageTitle = imageModal.querySelector(".image-modal__title");
+    const imageSrc = imageModal.querySelector(".modal__screen-image");
+    const imageTitle = imageModal.querySelector(".modal__title-image");
     imageSrc.src = evt.target.src;
     imageSrc.alt = evt.target.alt;
     imageTitle.textContent = evt.target.alt;

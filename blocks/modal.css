@@ -84,22 +84,17 @@
   height: 40px;
   cursor: pointer;
 }
-.image-modal_active {
-  visibility: visible;
-  opacity: 1;
-  transition-delay: 0s;
-}
 
-.image-modal__screen {
+.modal__screen-image {
   max-height: 75vh;
   max-width: 75vw;
 }
 
-.image-modal__content {
+.modal__content-image {
   position: relative;
 }
 
-.image-modal__title {
+.modal__title-image {
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
