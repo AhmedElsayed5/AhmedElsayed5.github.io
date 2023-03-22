@@ -30,13 +30,14 @@ const cardList = document.querySelector(".cards__list");
 const closeImageModalButton = document.querySelector(
   "#image-modal__close-button"
 );
+const imageModal = document.querySelector("#image-modal");
+closeImageModalButton.addEventListener("click", () => closeModal(imageModal));
 function createCard(card) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
-  const imageModal = document.querySelector("#image-modal");
   likeButton.addEventListener("click", (evt) => {
     const clickedButton = evt.target;
     clickedButton.classList.toggle("card__like-button_active");
@@ -56,8 +57,6 @@ function createCard(card) {
     imageSrc.alt = evt.target.alt;
     imageTitle.textContent = evt.target.alt;
   });
-
-  closeImageModalButton.addEventListener("click", () => closeModal(imageModal));
 
   cardImage.src = card.link;
   cardImage.alt = card.name;
@@ -105,8 +104,7 @@ function handleProfileFormSubmit(evt) {
 }
 
 editProfileButton.addEventListener("click", () => {
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
+  fillProfileForm();
   openModal(profileModal);
 });
 closeModalButton.addEventListener("click", () => closeModal(profileModal));
@@ -114,7 +112,7 @@ profileForm.addEventListener("submit", handleProfileFormSubmit);
 
 const cardModal = document.querySelector("#card-modal");
 const addCard = document.querySelector(".profile__add-button");
-const saveCard = document.querySelector("#card-modal__save-button");
+const saveCard = document.querySelector("#modal__form-addCard");
 
 const closeCardModalButton = cardModal.querySelector(
   "#card-modal__close-button"
@@ -137,4 +135,4 @@ addCard.addEventListener("click", () => openModal(cardModal));
 
 closeCardModalButton.addEventListener("click", () => closeModal(cardModal));
 
-saveCard.addEventListener("click", handleCardFormSubmit);
+saveCard.addEventListener("submit", handleCardFormSubmit);
