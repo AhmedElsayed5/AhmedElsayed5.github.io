@@ -52,21 +52,22 @@
   line-height: 22px;
   text-align: center;
   color: #ffffff;
-  border: none;
+  cursor: pointer;
+  border: 1px solid #000000;
 }
 
 .modal__save-button:hover {
   opacity: 0.8;
-  cursor: pointer;
 }
 
 .modal__input {
   height: 35px;
+  position: relative;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: 1px solid #000000;
-  margin: 0 0 50px 0;
+  margin: 0 0 5px 0;
   font-family: "Inter", Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -103,4 +104,11 @@
   color: #ffffff;
   align-self: flex-start;
   margin: 0;
+}
+
+.modal__save-button_disabled {
+  opacity: 0.2;
+  color: #000000;
+  background-color: #ffffff;
+  cursor: not-allowed;
 }

@@ -47,29 +47,37 @@
         <p class="footer__description">© 2022 Around The U.S.</p>
       </footer>
       <div class="modal" id="profile-modal">
-        <div class="modal__container">
+        <div class="modal__container modal__body">
           <button
             class="modal__close-button"
             id="profile-modal__close-button"
             type="button"
           ></button>
-          <form class="modal__container-form">
+          <form class="modal__container-form form" name="formProfile">
             <h2 class="modal__container-title">Edit profile</h2>
             <fieldset class="form-fieldset">
               <input
                 id="name"
-                class="modal__input"
+                class="modal__input form__input"
                 type="text"
                 placeholder="Name"
                 required
+                minlength="2"
+                maxlength="40"
+                name="name"
               />
+              <span class="name-error form__input-error"></span>
               <input
                 id="job"
-                class="modal__input"
+                class="modal__input form__input"
                 type="text"
                 placeholder="Description"
                 required
+                minlength="2"
+                maxlength="200"
+                name="description"
               />
+              <span class="job-error form__input-error"></span>
               <button
                 class="modal__save-button"
                 id="profile-modal__save-button"
@@ -82,13 +90,13 @@
         </div>
       </div>
       <div class="modal" id="card-modal">
-        <div class="modal__container">
+        <div class="modal__container modal__body">
           <button
             class="modal__close-button"
             id="card-modal__close-button"
             type="button"
           ></button>
-          <form class="modal__container-form" id="modal__form-addCard">
+          <form class="modal__container-form form" id="modal__form-addCard">
             <h2 class="modal__container-title">New Place</h2>
             <fieldset class="form-fieldset">
               <input
@@ -97,7 +105,10 @@
                 type="text"
                 placeholder="Title"
                 required
+                minlength="1"
+                maxlength="30"
               />
+              <span class="card-title-error form__input-error"></span>
               <input
                 id="image-Url"
                 class="modal__input"
@@ -105,6 +116,7 @@
                 placeholder="Image Url"
                 required
               />
+              <span class="image-Url-error form__input-error"></span>
               <button
                 class="modal__save-button"
                 id="card-modal__save-button"
@@ -118,7 +130,7 @@
       </div>
 
       <div class="modal" id="image-modal">
-        <div class="modal__content-image">
+        <div class="modal__content-image modal__body">
           <button
             class="modal__close-button"
             id="image-modal__close-button"
