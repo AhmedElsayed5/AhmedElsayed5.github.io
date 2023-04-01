@@ -98,23 +98,12 @@ function openModal(modal) {
 }
 
 function clearInput(modal) {
-  const inputList = Array.from(
-    modal.querySelectorAll(validationOptions.inputSelector)
-  );
-  inputList.forEach((input) => {
-    input.value = "";
-  });
+  const form = modal.querySelector(validationOptions.formSelector);
+  form.reset();
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  const inputList = Array.from(
-    modal.querySelectorAll(validationOptions.inputSelector)
-  );
-  inputList.forEach((input) => {
-    hideInputError(modal.querySelector(validationOptions.formSelector), input);
-  });
-  if (modal.id === "card-modal") clearInput(modal);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -124,10 +113,12 @@ function handleProfileFormSubmit(evt) {
   closeModal(profileModal);
 }
 
-editProfileButton.addEventListener("click", () => {
+function clickEditprofileButton() {
   fillProfileForm();
   openModal(profileModal);
-});
+}
+
+editProfileButton.addEventListener("click", clickEditprofileButton);
 closeModalButton.addEventListener("click", () => closeModal(profileModal));
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 
@@ -148,7 +139,7 @@ function handleCardFormSubmit(evt) {
   const cardElement = createCard(cardData);
   cardList.prepend(cardElement);
   const profileForm = document.querySelector("#modal__form-addCard");
-  profileForm.reset();
+
   closeModal(cardModal);
 }
 
@@ -160,10 +151,9 @@ saveCard.addEventListener("submit", handleCardFormSubmit);
 
 function closeModalEscape(evt) {
   if (evt.key === "Escape") {
-    const modalList = Array.from(document.querySelectorAll(".modal"));
-    modalList.forEach((modal) => {
-      closeModal(modal);
-    });
+    const modalopened = document.querySelector(".modal_opened");
+    if (modalopened === undefined) return;
+    else return closeModal(modalopened);
   }
 }
 document.addEventListener("keydown", (evt) => {
@@ -172,7 +162,6 @@ document.addEventListener("keydown", (evt) => {
 
 function closeModalclick(evt) {
   const modalList = Array.from(document.querySelectorAll(".modal"));
-  let modalToClose;
   modalList.forEach((modal) => {
     if (evt.target.closest(".modal__body")) {
       return;
@@ -184,6 +173,11 @@ function closeModalclick(evt) {
     }
   });
 }
+
+document.addEventListener("input", (evt) => {
+  const formToCheck = evt.target.closest(".form");
+  const inputPlace = evt.target;
+});
 
 document.addEventListener("click", (evt) => {
   closeModalclick(evt);
