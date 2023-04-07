@@ -29,18 +29,15 @@ function checkInputValidity(formEl, inputEl, options) {
   }
 }
 
+function checkFormValidity(inputList) {
+  return !inputList.every((inputElement) => inputElement.validity.valid);
+}
+
 function toggleButtonState(inputList, submitButton, options) {
-  let foundInvalid = false;
-
-  inputList.forEach((input) => {
-    if (!input.validity.valid) {
-      foundInvalid = true;
-    }
-  });
-
-  if (foundInvalid) {
+  if (checkFormValidity(inputList)) {
     submitButton.classList.add(options.inactiveButtonClass);
     submitButton.disabled = true;
+    return;
   } else {
     submitButton.classList.remove(options.inactiveButtonClass);
     submitButton.disabled = false;
@@ -52,6 +49,8 @@ const setEventListeners = (formElement, options) => {
     formElement.querySelectorAll(options.inputSelector)
   );
   const submitButton = formElement.querySelector(".modal__save-button");
+
+  toggleButtonState(inputList, submitButton, options);
   inputList.forEach((input) => {
     input.addEventListener("input", (evt) => {
       checkInputValidity(formElement, input, options);
