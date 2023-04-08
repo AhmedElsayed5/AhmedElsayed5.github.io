@@ -95,22 +95,14 @@ function fillProfileForm() {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", (evt) => {
-    closeModalEscape(evt, modal);
-  });
-  document.addEventListener("click", (evt) => {
-    closeModalclick(evt, modal);
-  });
+  document.addEventListener("keydown", closeModalWithEscape);
+  document.addEventListener("click", closeModalWithOutsideClick);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("keydown", (evt) => {
-    closeModalEscape(evt, modal);
-  });
-  document.removeEventListener("click", (evt) => {
-    closeModalclick(evt, modal);
-  });
+  document.removeEventListener("keydown", closeModalWithEscape);
+  document.removeEventListener("click", closeModalWithOutsideClick);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -145,10 +137,10 @@ function handleCardFormSubmit(evt) {
   };
   const cardElement = createCard(cardData);
   cardList.prepend(cardElement);
-  const profileForm = document.querySelector("#modal__form-addCard");
+  const cardForm = evt.target;
   closeModal(cardModal);
-  profileForm.reset();
-  const formSubmitButton = profileForm.querySelector(
+  cardForm.reset();
+  const formSubmitButton = cardForm.querySelector(
     validationOptions.submitButtonSelector
   );
   toggleButtonState(
@@ -164,17 +156,19 @@ closeCardModalButton.addEventListener("click", () => closeModal(cardModal));
 
 saveCardButton.addEventListener("submit", handleCardFormSubmit);
 
-function closeModalEscape(evt, modal) {
+function closeModalWithEscape(evt) {
+  const openedModal = document.querySelector(".modal_opened");
   if (evt.key === "Escape") {
-    closeModal(modal);
+    closeModal(openedModal);
   }
 }
 
-function closeModalclick(evt, modal) {
+function closeModalWithOutsideClick(evt) {
+  const openedModal = document.querySelector(".modal_opened");
   if (
     !evt.target.closest(".modal__body") &&
     evt.target.closest(".modal_opened")
   ) {
-    closeModal(modal);
+    closeModal(openedModal);
   }
 }
