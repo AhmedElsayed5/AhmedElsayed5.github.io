@@ -157,18 +157,18 @@ closeCardModalButton.addEventListener("click", () => closeModal(cardModal));
 saveCardButton.addEventListener("submit", handleCardFormSubmit);
 
 function closeModalWithEscape(evt) {
-  const openedModal = document.querySelector(".modal_opened");
   if (evt.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
   }
 }
 
 function closeModalWithOutsideClick(evt) {
-  const openedModal = document.querySelector(".modal_opened");
   if (
     !evt.target.closest(".modal__body") &&
     evt.target.closest(".modal_opened")
   ) {
+    const openedModal = document.querySelector(".modal_opened");
     closeModal(openedModal);
   }
 }
