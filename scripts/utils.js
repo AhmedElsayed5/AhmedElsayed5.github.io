@@ -1,9 +1,5 @@
 export const imageModal = document.querySelector("#image-modal");
-export const cardModal = document.querySelector("#card-modal");
-export const closeCardModalButton = cardModal.querySelector(
-  "#card-modal__close-button"
-);
-closeCardModalButton.addEventListener("click", () => closeModal(cardModal));
+export const addCardModal = document.querySelector("#card-modal");
 
 export function openModal(modal) {
   modal.classList.add("modal_opened");

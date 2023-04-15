@@ -2,6 +2,15 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import * as utils from "./utils.js";
 
+const settings = {
+  formSelector: ".form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__save-button",
+  inactiveButtonClass: "modal__save-button_disabled",
+  inputErrorClass: "form__input_type_error",
+  errorClass: "form__input-error_active",
+};
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -32,95 +41,81 @@ const initialCards = [
 const cardList = document.querySelector(".cards__list");
 const editProfileButton = document.querySelector(".profile__edit-button");
 
-const profileModal = document.querySelector("#profile-modal");
-const profileForm = profileModal.querySelector("form");
-const nameInput = profileModal.querySelector("#name");
-const jobInput = profileModal.querySelector("#job");
-const closeModalButton = profileModal.querySelector(
-  "#profile-modal__close-button"
-);
+const profileEditeModal = document.querySelector("#profile-modal");
+const profileEditeForm = profileEditeModal.querySelector("form");
+const nameInput = profileEditeModal.querySelector("#name");
+const jobInput = profileEditeModal.querySelector("#job");
+
 const profileName = document.querySelector(".profile__title");
 const profileJob = document.querySelector(".profile__description");
 
 const cardTitleInput = document.querySelector("#card-title");
 const cardSrcInput = document.querySelector("#image-Url");
-profileForm.addEventListener("submit", handleProfileFormSubmit);
+profileEditeForm.addEventListener("submit", handleProfileEditeFormSubmit);
 editProfileButton.addEventListener("click", handleEditProfileButton);
-closeModalButton.addEventListener("click", () =>
-  utils.closeModal(profileModal)
-);
 
 // formmmmmmmmsssssssssssss
-const formProfile = document.forms.formProfile;
-
-const closeImageModalButton = document.querySelector(
-  "#image-modal__close-button"
-);
-closeImageModalButton.addEventListener("click", () =>
-  utils.closeModal(utils.imageModal)
-);
 
 // As a Class
 initialCards.forEach(function (item) {
-  const data = {
-    name: item.name,
-    link: item.link,
-  };
-  const card = new Card(data, "#card");
+  const card = new Card(item, "#card");
   cardList.append(card.getView());
 });
 
-const addCardButton = document.querySelector(".profile__add-button");
-addCardButton.addEventListener("click", () => utils.openModal(utils.cardModal));
-
-function fillProfileForm() {
+function fillProfileEditeForm() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
-function handleProfileFormSubmit(evt) {
+function handleProfileEditeFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-  utils.closeModal(profileModal);
+  utils.closeModal(profileEditeModal);
 }
 
 function handleEditProfileButton() {
-  fillProfileForm();
-  utils.openModal(profileModal);
+  profileEditeFormValidator.disableButton();
+  fillProfileEditeForm();
+  utils.openModal(profileEditeModal);
 }
 
 const addCardForm = document.querySelector("#modal__form-addCard");
+const addCardFormValidator = new FormValidator(addCardForm, settings);
+addCardFormValidator.enableValidation();
+const addCardButton = document.querySelector(".profile__add-button");
+addCardButton.addEventListener("click", handleAddCardButton);
+function handleAddCardButton(evt) {
+  addCardFormValidator.disableButton();
+  utils.openModal(utils.addCardModal);
+}
 
 const saveCardButton = document.querySelector("#modal__form-addCard");
 
 saveCardButton.addEventListener("submit", handleCardFormSubmit);
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
+  createCard();
+  const cardForm = evt.target;
+  utils.closeModal(utils.addCardModal);
+  cardForm.reset();
+}
+
+function createCard() {
   const cardData = {
     name: cardTitleInput.value,
     link: cardSrcInput.value,
   };
   const cardElement = new Card(cardData, "#card");
   cardList.prepend(cardElement.getView());
-  const cardForm = evt.target;
-  utils.closeModal(utils.cardModal);
-  cardForm.reset();
-  const formSubmitButton = cardForm.querySelector(
-    settings.submitButtonSelector
-  );
 }
 
-const settings = {
-  formSelector: ".form",
-  inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__save-button",
-  inactiveButtonClass: "modal__save-button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
-};
+const profileEditeFormValidator = new FormValidator(profileEditeForm, settings);
+profileEditeFormValidator.enableValidation();
 
-const profileFormValidation = new FormValidator(profileForm, settings);
-profileFormValidation.enableValidation();
-const addCardFormValidation = new FormValidator(addCardForm, settings);
-addCardFormValidation.enableValidation();
+const closeButtons = document.querySelectorAll(".modal__close-button");
+
+closeButtons.forEach((button) => {
+  const popup = button.closest(".modal");
+  button.addEventListener("click", () => utils.closeModal(popup));
+});
