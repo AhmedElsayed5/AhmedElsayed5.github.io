@@ -113,9 +113,12 @@ function createCard() {
 const profileEditeFormValidator = new FormValidator(profileEditeForm, settings);
 profileEditeFormValidator.enableValidation();
 
-const closeButtons = document.querySelectorAll(".modal__close-button");
+function activateCloseButtons() {
+  const closeButtons = document.querySelectorAll(".modal__close-button");
 
-closeButtons.forEach((button) => {
-  const popup = button.closest(".modal");
-  button.addEventListener("click", () => utils.closeModal(popup));
-});
+  closeButtons.forEach((button) => {
+    const popup = button.closest(".modal");
+    button.addEventListener("click", () => utils.closeModal(popup));
+  });
+}
+activateCloseButtons();
