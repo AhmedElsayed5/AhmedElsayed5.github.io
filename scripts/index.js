@@ -86,7 +86,6 @@ addCardFormValidator.enableValidation();
 const addCardButton = document.querySelector(".profile__add-button");
 addCardButton.addEventListener("click", handleAddCardButton);
 function handleAddCardButton(evt) {
-  addCardFormValidator.disableButton();
   utils.openModal(utils.addCardModal);
 }
 
@@ -99,6 +98,7 @@ function handleCardFormSubmit(evt) {
   const cardForm = evt.target;
   utils.closeModal(utils.addCardModal);
   cardForm.reset();
+  addCardFormValidator.disableButton();
 }
 
 function createCard() {
