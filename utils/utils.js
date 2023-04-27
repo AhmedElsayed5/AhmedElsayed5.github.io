@@ -8,6 +8,7 @@ export function openModal(modal) {
 }
 
 export function closeModal(modal) {
+  // console.log("here");
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeModalWithEscape);
   document.removeEventListener("click", closeModalWithOutsideClick);

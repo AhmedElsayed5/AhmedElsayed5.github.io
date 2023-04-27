@@ -1,10 +1,11 @@
-import * as utils from "./utils.js";
+import * as utils from "../utils/utils.js";
 
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardViewElements() {
@@ -25,9 +26,10 @@ export default class Card {
     this._deleteButton.addEventListener("click", () =>
       this._handleDeleteIcon()
     );
-    this._cardImage.addEventListener("click", () =>
-      this._handlePreviewPicture()
-    );
+    this._cardImage.addEventListener("click", () => {
+      this._handlePreviewPicture();
+      this._handleCardClick();
+    });
   }
 
   _handleLikeIcon() {
