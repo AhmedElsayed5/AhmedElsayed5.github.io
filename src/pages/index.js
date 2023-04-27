@@ -4,6 +4,7 @@ import * as utils from "../utils/utils.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForms from "../components/popupWithForms.js";
 import UserInfo from "../components/UserInfo.js";
+import "./index.css";
 
 const settings = {
   formSelector: ".form",
