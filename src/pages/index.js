@@ -44,10 +44,10 @@ const initialCards = [
 ];
 
 const cardList = document.querySelector(".cards__list");
-
+const imageFullView = new PopupWithImage("#image-modal");
+imageFullView.setEventListeners();
 const createCard = ({ name, link }) => {
   const card = new Card({ name, link }, "#card", () => {
-    imageFullView.setEventListeners();
     imageFullView.open({ name, link });
   });
   return card.getView();
@@ -58,15 +58,14 @@ const cardSection = new Section(
   {
     items: initialCards,
     renderer: function (item) {
-      cardList.prepend(createCard(item));
+      cardSection.addItem(createCard(item));
     },
   },
   ".cards__list"
 );
 cardSection.renderItems();
 
-const imageFullView = new PopupWithImage("#image-modal");
-const user = new UserInfo("#name", "#job");
+const user = new UserInfo(".profile__title", ".profile__description");
 const editProfileModal = new PopupWithForm(
   "#profile-modal",
   ({ name, job }) => {

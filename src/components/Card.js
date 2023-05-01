@@ -34,7 +34,6 @@ export default class Card {
   }
 
   _handleDeleteIcon() {
-    this._deleteButton.closest(".card").remove();
     this._element.remove();
     this._element = null;
   }
@@ -42,8 +41,8 @@ export default class Card {
   _getTemplate() {
     return document
       .querySelector(this._cardSelector)
-      .content.querySelector(".card")
-      .cloneNode(true);
+      .content.cloneNode(true)
+      .querySelector(".card");
   }
 
   getView() {

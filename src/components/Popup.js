@@ -6,6 +6,7 @@ export default class Popup {
 
   open() {
     this._modal.classList.add("modal_opened");
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   close() {
@@ -29,7 +30,6 @@ export default class Popup {
 
   setEventListeners() {
     this._closeButton.addEventListener("click", () => this.close());
-    document.addEventListener("keydown", this._handleEscClose);
     document.addEventListener("mousedown", (evt) =>
       this._closeModalWithOutsideClick(evt)
     );
