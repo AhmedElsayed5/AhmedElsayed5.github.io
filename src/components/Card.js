@@ -1,5 +1,3 @@
-import * as utils from "../utils/utils.js";
-
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
@@ -8,7 +6,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
   }
 
-  _getCardViewElements() {
+  _setCardViewElements() {
     this._cardImage = this._element.querySelector(".card__image");
     this._cardTitle = this._element.querySelector(".card__title");
     this._likeButton = this._element.querySelector(".card__like-button");
@@ -27,7 +25,6 @@ export default class Card {
       this._handleDeleteIcon()
     );
     this._cardImage.addEventListener("click", () => {
-      this._handlePreviewPicture();
       this._handleCardClick();
     });
   }
@@ -38,15 +35,8 @@ export default class Card {
 
   _handleDeleteIcon() {
     this._deleteButton.closest(".card").remove();
-  }
-
-  _handlePreviewPicture() {
-    const imageSrc = utils.imageModal.querySelector(".modal__screen-image");
-    const imageTitle = utils.imageModal.querySelector(".modal__title-image");
-    imageSrc.src = this._link;
-    imageSrc.alt = this._name;
-    imageTitle.textContent = this._name;
-    utils.openModal(utils.imageModal);
+    this._element.remove();
+    this._element = null;
   }
 
   _getTemplate() {
@@ -58,7 +48,7 @@ export default class Card {
 
   getView() {
     this._element = this._getTemplate();
-    this._getCardViewElements();
+    this._setCardViewElements();
     this._setCardView();
     this._setEventListeners();
     return this._element;

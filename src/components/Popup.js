@@ -10,13 +10,14 @@ export default class Popup {
 
   close() {
     this._modal.classList.remove("modal_opened");
+    document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose(evt) {
+  _handleEscClose = (evt) => {
     if (evt.key === "Escape") {
       this.close();
     }
-  }
+  };
 
   _closeModalWithOutsideClick(evt) {
     if (
@@ -27,11 +28,9 @@ export default class Popup {
   }
 
   setEventListeners() {
-    // console.log("here");
-    // console.log(this._closeButton);
     this._closeButton.addEventListener("click", () => this.close());
-    document.addEventListener("keydown", (evt) => this._handleEscClose(evt));
-    document.addEventListener("click", (evt) =>
+    document.addEventListener("keydown", this._handleEscClose);
+    document.addEventListener("mousedown", (evt) =>
       this._closeModalWithOutsideClick(evt)
     );
   }

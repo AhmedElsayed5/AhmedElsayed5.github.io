@@ -1,6 +1,3 @@
-export const imageModal = document.querySelector("#image-modal");
-export const addCardModal = document.querySelector("#card-modal");
-
 export function openModal(modal) {
   modal.classList.add("modal_opened");
   document.addEventListener("keydown", closeModalWithEscape);
@@ -8,7 +5,6 @@ export function openModal(modal) {
 }
 
 export function closeModal(modal) {
-  // console.log("here");
   modal.classList.remove("modal_opened");
   document.removeEventListener("keydown", closeModalWithEscape);
   document.removeEventListener("click", closeModalWithOutsideClick);
