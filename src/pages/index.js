@@ -65,6 +65,7 @@ const cardSection = new Section(
 );
 cardSection.renderItems();
 
+// Edit name and Description
 const user = new UserInfo(".profile__title", ".profile__description");
 const editProfileModal = new PopupWithForm(
   "#profile-modal",
@@ -72,14 +73,15 @@ const editProfileModal = new PopupWithForm(
     user.setUserInfo({ name, job });
   }
 );
+
 const addCardModal = new PopupWithForm("#card-modal", ({ name, link }) => {
   /// using Section Class
   cardSection.addItem(createCard({ name, link }));
 });
 
-const editeProfileform = document.querySelector("#formProfile");
-const editeprofileFormValidator = new FormValidator(editeProfileform, settings);
-editeprofileFormValidator.enableValidation();
+const editeProfileForm = document.querySelector("#formProfile");
+const editeProfileFormValidator = new FormValidator(editeProfileForm, settings);
+editeProfileFormValidator.enableValidation();
 
 const addImageForm = document.querySelector("#modal__form-addCard");
 const addImageFormValidator = new FormValidator(addImageForm, settings);
@@ -88,7 +90,12 @@ addImageFormValidator.enableValidation();
 const editProfileButton = document.querySelector(".profile__edit-button");
 editProfileButton.addEventListener("click", handleEditProfileButton);
 function handleEditProfileButton() {
-  editeprofileFormValidator.disableButton();
+  const currentUser = user.getUserInfo();
+  const currentUserNamePlace = document.querySelector("#name");
+  const currentUserJobPlace = document.querySelector("#job");
+  currentUserNamePlace.value = currentUser.name;
+  currentUserJobPlace.value = currentUser.job;
+  editeProfileFormValidator.disableButton();
   editProfileModal.open();
 }
 editProfileModal.setEventListeners();

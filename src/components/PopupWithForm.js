@@ -21,13 +21,13 @@ export default class PopupWithForms extends Popup {
     this._inputList.forEach((input) => {
       inputValues[input.name] = input.value;
     });
-    return this._handleFormSubmit(inputValues);
+    return inputValues;
   }
   setEventListeners() {
     super.setEventListeners();
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._getInputValues();
+      this._handleFormSubmit(this._getInputValues());
       this.close();
     });
   }
