@@ -27,5 +27,6 @@ export default class popupWithConfirmation extends Popup {
   }
   setSubmitAction(handleDeleteSubmit) {
     this._handleDeleteSubmit = handleDeleteSubmit;
+    console.log("Delete");
   }
 }

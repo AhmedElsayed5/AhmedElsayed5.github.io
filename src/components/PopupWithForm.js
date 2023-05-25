@@ -16,18 +16,19 @@ export default class PopupWithForms extends Popup {
     super.close();
   }
   _getInputValues() {
-    this._inputList = Array.from(
-      this._modalForm.querySelectorAll(".modal__input")
-    );
-    let inputValues = {};
+    // this._inputList = Array.from(
+    //   this._modalForm.querySelectorAll(".modal__input")
+    // );
+    const inputValues = {};
     this._inputList.forEach((input) => {
       inputValues[input.name] = input.value;
     });
     return inputValues;
   }
 
-  renderLoading(flag, textValue) {
-    if (flag) this._submitButton.textContent = "Loading...";
+  renderLoading(isLoading, textValue = "Loading...") {
+    console.log("here!!");
+    if (isLoading) this._submitButton.textContent = "Loading...";
     else this._submitButton.textContent = textValue;
   }
 

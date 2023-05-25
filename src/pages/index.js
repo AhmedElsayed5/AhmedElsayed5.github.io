@@ -43,9 +43,9 @@ const editProfileModal = new PopupWithForm("#profile-modal", (data) => {
     .then((res) => {
       user.setUserInfo(res);
       editProfileModal.close();
-      editProfileModal.renderLoading(false, "Save");
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.log(error))
+    .finally(() => editProfileModal.renderLoading(false, "Save"));
 });
 
 // Edit Avatar
@@ -56,13 +56,12 @@ const editProfileAvatar = new PopupWithForm("#edit-avatar-modal", (data) => {
     .then((res) => {
       user.setAvatar(res.avatar);
       editProfileAvatar.close();
-      editProfileAvatar.renderLoading(false, "Save");
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      // avatarPopup.renderLoading(false, "Save");
+      editProfileAvatar.renderLoading(false, "Save");
     });
 });
 const profileAvatar = document.querySelector(".profile__image-edit");
@@ -99,20 +98,24 @@ const createCard = (data, cardOwner, currentUser) => {
     () => {
       deleteCardModal.open(data._id);
       deleteCardModal.setSubmitAction(() => {
-        api.deleteUserCard(data._id).then(() => {
-          deleteCardModal.close();
-          card.handleDeleteIcon();
-        });
+        api
+          .deleteUserCard(data._id)
+          .then(() => {
+            deleteCardModal.close();
+            card.handleDeleteIcon();
+          })
+          .catch((err) => console.log(err));
       });
     },
     currentUser,
     () => {
-      if (card._likes.some((like) => like._id === data.owner._id)) {
+      if (card.isLiked()) {
         api
           .removeCardLikes(card._cardId)
           .then((res) => {
-            card.setLikeInfo(res);
-            card.updateLikes(); // magic is here
+            console.log(res);
+            card.setLikeInfo(res.likes);
+            // card.updateLikes(); // magic is here
           })
           .catch((err) => {
             console.log(err);
@@ -121,8 +124,9 @@ const createCard = (data, cardOwner, currentUser) => {
         api
           .addCardLikes(card._cardId)
           .then((res) => {
-            card.setLikeInfo(res);
-            card.updateLikes(); // magic is here
+            // console.log(res);
+            card.setLikeInfo(res.likes);
+            // card.updateLikes(); // magic is here
           })
           .catch((err) => {
             console.log(err);
@@ -136,11 +140,17 @@ const createCard = (data, cardOwner, currentUser) => {
 /// add card
 const addCardModal = new PopupWithForm("#card-modal", ({ name, link }) => {
   addCardModal.renderLoading(true);
-  api.addNewCard({ name, link }).then((res) => {
-    cardSection.addItem(createCard(res, "owner"));
-    addCardModal.close();
-    addCardModal.renderLoading(false, "Save");
-  });
+  api
+    .addNewCard({ name, link })
+    .then((res) => {
+      cardSection.addItem(createCard(res));
+      addCardModal.close();
+      // addCardModal.renderLoading(false, "Save");
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => addCardModal.renderLoading(false, "Save"));
 });
 
 const editeProfileForm = document.querySelector("#formProfile");
