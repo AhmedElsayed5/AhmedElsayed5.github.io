@@ -16,9 +16,6 @@ export default class PopupWithForms extends Popup {
     super.close();
   }
   _getInputValues() {
-    // this._inputList = Array.from(
-    //   this._modalForm.querySelectorAll(".modal__input")
-    // );
     const inputValues = {};
     this._inputList.forEach((input) => {
       inputValues[input.name] = input.value;
@@ -26,7 +23,7 @@ export default class PopupWithForms extends Popup {
     return inputValues;
   }
 
-  renderLoading(isLoading, textValue = "Loading...") {
+  renderLoading(isLoading, textValue) {
     if (isLoading) this._submitButton.textContent = "Loading...";
     else this._submitButton.textContent = textValue;
   }
@@ -36,8 +33,6 @@ export default class PopupWithForms extends Popup {
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      // this._modalForm.reset();
-      // this.close();
     });
   }
 }

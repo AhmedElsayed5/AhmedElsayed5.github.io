@@ -6,9 +6,8 @@ export default class popupWithConfirmation extends Popup {
     this._confirmButton = this._modal.querySelector(".modal__save-button");
   }
 
-  open(id) {
+  open() {
     super.open();
-    this._id = id;
   }
   setEventListeners() {
     super.setEventListeners();

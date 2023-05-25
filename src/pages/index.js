@@ -4,7 +4,7 @@ import FormValidator from "../components/FormValidator.js";
 import * as utils from "../utils/utils.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/popupWithForm.js";
-import popupWithConfirmation from "../components/popupWithConfirmation.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import "./index.css";
@@ -82,7 +82,7 @@ function handleProfileAvatar() {
 
 // Delete card
 
-const deleteCardModal = new popupWithConfirmation("#delete-image-modal");
+const deleteCardModal = new PopupWithConfirmation("#delete-image-modal");
 deleteCardModal.setEventListeners();
 let cardSection;
 const imageFullView = new PopupWithImage("#image-modal");
@@ -95,14 +95,14 @@ const createCard = (data, currentUser) => {
       imageFullView.open({ name: data.name, link: data.link });
     },
     () => {
-      deleteCardModal.open(data._id);
+      deleteCardModal.open();
       deleteCardModal.setSubmitAction(() => {
         deleteCardModal.renderLoading(true);
         api
           .deleteUserCard(data._id)
           .then(() => {
             deleteCardModal.close();
-            card.handleDeleteIcon();
+            card.deleteCard();
           })
           .catch((err) => console.log(err))
           .finally(() => deleteCardModal.renderLoading(false));
@@ -141,13 +141,12 @@ const addCardModal = new PopupWithForm("#card-modal", ({ name, link }) => {
     .addNewCard({ name, link })
     .then((res) => {
       cardSection.addItem(createCard(res, res.owner));
-      addCardModal.renderLoading(false, "Save");
     })
     .then(() => addCardModal.close())
     .catch((err) => {
       console.log(err);
     })
-    .finally(() => addCardModal.renderLoading(false, "Save"));
+    .finally(() => addCardModal.renderLoading(false, "Create"));
 });
 
 const editeProfileForm = document.querySelector("#formProfile");

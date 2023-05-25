@@ -55,11 +55,6 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  updateLikes(likes) {
-    this._likes = likes;
-    this.renderLikes();
-  }
-
   addCardLikes(cardId) {
     return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
