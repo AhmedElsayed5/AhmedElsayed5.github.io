@@ -87,24 +87,25 @@ deleteCardModal.setEventListeners();
 let cardSection;
 const imageFullView = new PopupWithImage("#image-modal");
 imageFullView.setEventListeners();
-const createCard = (data, cardOwner, currentUser) => {
+const createCard = (data, currentUser) => {
   const card = new Card(
     data,
     "#card",
-    cardOwner,
     () => {
       imageFullView.open({ name: data.name, link: data.link });
     },
     () => {
       deleteCardModal.open(data._id);
       deleteCardModal.setSubmitAction(() => {
+        deleteCardModal.renderLoading(true);
         api
           .deleteUserCard(data._id)
           .then(() => {
             deleteCardModal.close();
             card.handleDeleteIcon();
           })
-          .catch((err) => console.log(err));
+          .catch((err) => console.log(err))
+          .finally(() => deleteCardModal.renderLoading(false));
       });
     },
     currentUser,
@@ -113,9 +114,7 @@ const createCard = (data, cardOwner, currentUser) => {
         api
           .removeCardLikes(card._cardId)
           .then((res) => {
-            console.log(res);
             card.setLikeInfo(res.likes);
-            // card.updateLikes(); // magic is here
           })
           .catch((err) => {
             console.log(err);
@@ -124,9 +123,7 @@ const createCard = (data, cardOwner, currentUser) => {
         api
           .addCardLikes(card._cardId)
           .then((res) => {
-            // console.log(res);
             card.setLikeInfo(res.likes);
-            // card.updateLikes(); // magic is here
           })
           .catch((err) => {
             console.log(err);
@@ -143,10 +140,10 @@ const addCardModal = new PopupWithForm("#card-modal", ({ name, link }) => {
   api
     .addNewCard({ name, link })
     .then((res) => {
-      cardSection.addItem(createCard(res));
-      addCardModal.close();
-      // addCardModal.renderLoading(false, "Save");
+      cardSection.addItem(createCard(res, res.owner));
+      addCardModal.renderLoading(false, "Save");
     })
+    .then(() => addCardModal.close())
     .catch((err) => {
       console.log(err);
     })
@@ -191,13 +188,7 @@ api
       {
         items: userCards,
         renderer: function (item) {
-          cardSection.addItem(
-            createCard(
-              item,
-              item.owner._id === userData._id ? "owner" : "non-owner",
-              userData
-            )
-          );
+          cardSection.addItem(createCard(item, userData));
         },
       },
       ".cards__list"
