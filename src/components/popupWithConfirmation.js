@@ -3,9 +3,7 @@ import Popup from "./Popup.js";
 export default class popupWithConfirmation extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._confirmButton = this._modal.querySelector(
-      ".delete-image-modal__button"
-    );
+    this._confirmButton = this._modal.querySelector(".modal__save-button");
   }
 
   open(id) {
