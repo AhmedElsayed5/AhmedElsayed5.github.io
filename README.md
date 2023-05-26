@@ -6,7 +6,7 @@
 
 **Technologies**
 
-- The main technologies used in this projest is HTML and CSS. I used Responsive design technique by implementing grid and flex display.
+- The main technologies used in this projest is HTML, CSS, Javascript and webpack. I used Responsive design technique by implementing grid and flex display.
 
 **Intro**
 
