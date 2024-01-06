@@ -16,7 +16,8 @@
 
 **Images**
 
-<img width="1547" alt="Screenshot 2024-01-06 at 3 41 29 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/dea88af4-6796-4e41-ba26-ca96320192fe">
+<img width="1203" alt="Screenshot 2024-01-06 at 3 43 59 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/65ab4a2b-62c8-4ad7-b09e-053d1772b68e">
+
 
 
 
