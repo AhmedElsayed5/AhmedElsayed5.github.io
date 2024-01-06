@@ -6,7 +6,8 @@
 - Responsive Design
 - Maintains Privacy for users
 - Aesthetic Design
-
+- Animated Transition
+  
 **Technologies**
 
 - Javascript
