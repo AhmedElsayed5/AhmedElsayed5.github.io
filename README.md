@@ -1,22 +1,30 @@
-# Project 3: Around The U.S.
+# Around The U.S.
 
-### Overview
+### Description
 
-- This project is mainly as it's name says a collection of pictures for places around the U.S.
-
+- Social Media Platform where users get the chance to share their pictures from places around the US
+- Responsive Design
+- Maintains Privacy for users
+- Aesthetic Design
+- Animated Transition
+  
 **Technologies**
 
-- The main technologies used in this projest is HTML and CSS. I used Responsive design technique by implementing grid and flex display.
-
-**Intro**
-
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+- Javascript
+- HTML
+- CSS
+- WebPack
 
 **Images**
 
--![320px view](/images/Screenshot-1.jpeg "pic-1") -![721px view](/images/Screenshot-2.jpeg "pic-2")
---![1120px view](/images/Screenshot-3.jpeg "pic-3")
+<img width="1203" alt="Screenshot 2024-01-06 at 3 43 59 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/65ab4a2b-62c8-4ad7-b09e-053d1772b68e">
+<img width="1203" alt="Screenshot 2024-01-06 at 3 44 31 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/fde450e7-ad94-4b90-9300-701644e95a45">
+<img width="1203" alt="Screenshot 2024-01-06 at 3 44 54 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/56899feb-5568-4827-95f2-ffa0a75ca7bd">
+<img width="1203" alt="Screenshot 2024-01-06 at 3 45 02 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/638c162e-d81c-4780-9f63-32627c12be74">
+<img width="1203" alt="Screenshot 2024-01-06 at 3 45 11 AM" src="https://github.com/AhmedElsayed5/se_project_aroundtheus/assets/46688006/50429faa-d4c0-4f41-bc64-decf404e5373">
 
-**GitHub-page**
 
-https://ahmedelsayed5.github.io/se_project_aroundtheus/
+
+
+
+
